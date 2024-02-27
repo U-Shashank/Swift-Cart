@@ -62,19 +62,52 @@ const updateProduct = async (req, res) => {
 
 const getAllProduct = async (req, res) => {
 
-    const {category} = req.query
+    const { category, numericFilters, page, name } = req.query
     const queryObject = {}
 
-    if(category){
-        queryObject.category = { $in: category.split(',') }
+    if (category) {
+        queryObject.category = category.split(',')
+    }
+    if (name) {
+        queryObject.name = {
+            $regex: name,
+            $options: 'i'
+        }
     }
 
-    let product = await Product.
+    if (numericFilters) {
+        const operatorMap = {
+            '>': '$gt',
+            '>=': '$gte',
+            '=': '$eq',
+            '<': '$lt',
+            '<=': '$lte',
+        }
+        const regEx = /\b(<|>|>=|=|<|<=)\b/g
+        let filters = numericFilters.replace(
+            regEx,
+            (match) => `-${operatorMap[match]}-`
+        )
+        const options = ['price']
+        filters = filters.split(',').forEach((item) => {
+            const [field, operator, value] = item.split('-')
+            if (options.includes(field)) {
+                queryObject[field] = { ...queryObject[field], [operator]: Number(value) }
+            }
+        })
+    }
+
+    let result = Product.
         find(queryObject).
         populate("category").
         select("-photo").
-        limit(12).
         sort({ createdAt: -1 })
+
+    if (page > 0) {
+        result = result.limit(Number(page) * 1)
+    }
+
+    const product = await result
 
     res.status(200).json({
         msg: "all products",

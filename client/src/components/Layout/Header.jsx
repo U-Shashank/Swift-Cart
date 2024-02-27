@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { BsCart4 } from "react-icons/bs";
 import { useAuth } from '../../../context/auth';
+import { useSearch } from '../../../context/search';
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [dropdown, setDropdown] = useState(false);
+  const [search, setSearch] = useSearch();
+  const [searchValue, setSearchValue] = useState("");
 
   const handleLogout = () => {
     setAuth(prevAuth => (
@@ -22,6 +25,10 @@ const Header = () => {
     setDropdown(prev => !prev);
   };
 
+  const handleSearch = (e) => {
+    if (e.code === "Enter") setSearch(searchValue)
+  }
+
   return (
     <nav className="bg-gradient-to-r from-red-400 to-yellow-500 p-4">
       <div className="container mx-auto flex justify-between items-center">
@@ -29,7 +36,14 @@ const Header = () => {
           <BsCart4 />
           SwiftCart
         </Link>
-
+        <input type="text" className="w-1/2 border border-gray-300 rounded-lg py-2 px-4 pl-10 focus:outline-none focus:border-blue-500"
+          placeholder="Search"
+          value={searchValue}
+          onChange={(e) => {
+            setSearchValue(e.target.value)
+          }}
+          onKeyDown={handleSearch}
+        />
         <ul className="flex space-x-4">
           <li>
             <NavLink
