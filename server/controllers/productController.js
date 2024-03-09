@@ -146,11 +146,24 @@ const getPhoto = async (req, res) => {
     }
 }
 
+const getSimilarProducts = async (req, res) => {
+    const {pid, cid} = req.params
+    const product = await Product.find({
+        category: cid,
+        _id : {$ne: pid}
+    }).populate(category).select("-photo")
+    res.status(200).json({
+        product,
+        success:true
+    })
+}
+
 export {
     createProduct,
     updateProduct,
     getAllProduct,
     getProduct,
     deleteProduct,
-    getPhoto
+    getPhoto,
+    getSimilarProducts
 }

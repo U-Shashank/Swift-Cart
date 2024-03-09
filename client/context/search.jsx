@@ -4,7 +4,6 @@ const SearchContext = createContext()
 
 const SearchProvider = ({children}) => {
     const [search, setSearch] = useState("")
-    useEffect(() => console.log(search), [search])
 
     return (
         <SearchContext.Provider value={[search, setSearch]}>

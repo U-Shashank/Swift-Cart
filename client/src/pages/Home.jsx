@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { LiaRupeeSignSolid } from 'react-icons/lia';
 import { useSearch } from '../../context/search';
+import { useCart } from '../../context/cart';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -13,6 +14,8 @@ const Home = () => {
   const [maxPrice, setMaxPrice] = useState("");
   const [page, setPage] = useState(1);
   const [search] = useSearch()
+
+  const [cart, setCart] = useCart()
 
   useEffect(() => {
     getAllCategory();
@@ -115,7 +118,7 @@ const Home = () => {
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full justify-items-center gap-5'>
             {
               products.map((product) => (
-                <Link to={`/dashboard/admin/product/${product.slug}`} key={product._id}>
+                <Link to={`/product/${product.slug}`} key={product._id}>
                   <div className="max-w-[250px] rounded overflow-hidden shadow-lg bg-white">
                     <img className="w-full h-48 object-cover" src={`${import.meta.env.VITE_HOST_URL}/product/photo/${product._id}`} alt="Product Image" />
                     <div className="px-6">
@@ -125,9 +128,23 @@ const Home = () => {
                       <span className="text-gray-700">Price:</span>
                       <span className="font-bold text-xl flex items-center"><LiaRupeeSignSolid />{product.price}</span>
                     </div>
+                    <div className="px-6 py-4">
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        setCart((prev) => ([
+                          ...prev,
+                          product
+                        ]))
+                        localStorage.setItem('cart', JSON.stringify([... cart, product]))
+                      }}>
+                        Add to Cart
+                      </button>
+                    </div>
                   </div>
                 </Link>
               ))
+              
             }
           </div>
           <button className='bg-gray-500 rounded-lg text-xl px-2 py-1 mt-2 w-[150px] text-gray-100 hover:bg-gray-200 hover:text-gray-500'

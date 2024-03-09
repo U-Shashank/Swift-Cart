@@ -17,11 +17,15 @@ import Users from './pages/admin/Users';
 import Profile from './pages/user/Profile';
 import Orders from './pages/user/Orders';
 import UpdateProduct from './pages/admin/UpdateProduct';
+import ProductDetails from './pages/ProductDetails';
+import Cart from './pages/Cart';
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/product/:slug" element={<ProductDetails />} />
+      <Route path="/cart" element={<Cart />} />
       <Route path="/dashboard" element={<Private />}>
         <Route path="user" element={<Dashboard />} />
         <Route path="user/profile" element={<Profile />} />

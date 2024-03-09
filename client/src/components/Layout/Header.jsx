@@ -3,12 +3,14 @@ import { Link, NavLink } from 'react-router-dom';
 import { BsCart4 } from "react-icons/bs";
 import { useAuth } from '../../../context/auth';
 import { useSearch } from '../../../context/search';
+import { useCart } from '../../../context/cart';
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [dropdown, setDropdown] = useState(false);
   const [search, setSearch] = useSearch();
   const [searchValue, setSearchValue] = useState("");
+  const [cart] = useCart()
 
   const handleLogout = () => {
     setAuth(prevAuth => (
@@ -49,34 +51,24 @@ const Header = () => {
             <NavLink
               to="/"
               className="text-white hover:text-yellow-300 transition duration-300"
-
             >
               Home
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/category"
-              className="text-white hover:text-yellow-300 transition duration-300"
-            >
-              Category
-            </NavLink>
-          </li>
+
           {!auth.user ? (
             <>
               <li>
                 <NavLink
                   to="/register"
-                  className="text-white hover:text-yellow-300 transition duration-300"
-                >
+                  className="text-white hover:text-yellow-300 transition duration-300"                >
                   Sign Up
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/login"
-                  className="text-white hover:text-yellow-300 transition duration-300"
-                >
+                  className="text-white hover:text-yellow-300 transition duration-300"                >
                   Login
                 </NavLink>
               </li>
@@ -110,9 +102,8 @@ const Header = () => {
           <li>
             <NavLink
               to="/cart"
-              className="text-white hover:text-yellow-300 transition duration-300"
-            >
-              Cart(0)
+              className="text-white hover:text-yellow-300 transition duration-300"            >
+              Cart({cart.length})
             </NavLink>
           </li>
         </ul>
