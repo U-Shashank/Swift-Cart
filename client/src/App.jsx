@@ -9,7 +9,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Private from './components/Routes/Private';
 import Admin from './components/Routes/Admin';
-import AdminDashboard from './pages/Admin/AdminDashboard';
+import AdminDashboard from './pages/admin/AdminDashboard';
 import CreateProduct from './pages/admin/CreateProduct';
 import CreateCategory from './pages/admin/CreateCategory';
 import Products from './pages/admin/Products';

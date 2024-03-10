@@ -2,6 +2,15 @@ import slugify from "slugify"
 import { BadRequestError } from "../errors/index.js"
 import fs from 'fs'
 import Product from "../models/Product.js"
+import braintree from "braintree"
+import Order from "../models/Order.js"
+
+const gateway = new braintree.BraintreeGateway({
+    environment: braintree.Environment.Sandbox,
+    merchantId: "cwzsn2g9wnb84s2b",
+    publicKey: "z32pfjsfx27drqxm",
+    privateKey: "cba2333d622d39e2248ebe97faec15f3",
+});
 
 const createProduct = async (req, res) => {
 
@@ -147,14 +156,47 @@ const getPhoto = async (req, res) => {
 }
 
 const getSimilarProducts = async (req, res) => {
-    const {pid, cid} = req.params
+    const { pid, cid } = req.params
     const product = await Product.find({
         category: cid,
-        _id : {$ne: pid}
+        _id: { $ne: pid }
     }).populate(category).select("-photo")
     res.status(200).json({
         product,
-        success:true
+        success: true
+    })
+}
+
+
+const braintreeToken = async (req, res) => {
+    try {
+        
+        const response = await gateway.clientToken.generate({})
+        res.send(response)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const braintreePayment = async (req, res) => {
+    const { cart, nonce } = req.body
+    const totalPrice = cart.reduce((total, product) => total + product.price, 0);
+    const response = await gateway.transaction.sale({
+        amount: totalPrice,
+        paymentMethodNonce: nonce,
+        options: {
+            submitForSettlement: true
+        }
+    })
+
+    const order = new Order({
+        products: cart,
+        payment: response,
+        buyer: req.user._id
+    }).save()
+
+    res.json({
+        success: true
     })
 }
 
@@ -165,5 +207,7 @@ export {
     getProduct,
     deleteProduct,
     getPhoto,
-    getSimilarProducts
+    getSimilarProducts,
+    braintreePayment,
+    braintreeToken
 }

@@ -12,6 +12,7 @@ import notFound from './middlewares/not-found.js'
 import authRouter from './routes/authRouter.js'
 import categoryRouter from './routes/categoryRouter.js'
 import productRouter from './routes/productRouter.js'
+import braintreeRouter from './routes/braintreeRouter.js'
 
 
 const app = express()
@@ -26,6 +27,8 @@ app.use(cors())
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/category', categoryRouter)
 app.use('/api/v1/product', productRouter)
+app.use('/api/v1/braintree', braintreeRouter)
+app.use('/api/v1/braintree', braintreeRouter)
 
 app.get("/api/v1", (req,res) => {
     res.send("Home page")
