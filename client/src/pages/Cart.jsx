@@ -1,11 +1,14 @@
 import React from 'react';
 import Layout from '../components/Layout/Layout';
 import { useCart } from '../../context/cart';
+import { useAuth } from '../../context/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const [cart, setCart] = useCart();
-
-    // Calculate total price
+    const [auth] = useAuth()
+    const { user, token } = auth
+    const navigate = useNavigate()
     const totalPrice = cart.reduce((total, product) => total + product.price, 0);
 
     return (
@@ -37,12 +40,31 @@ const Cart = () => {
                             </div>
                         ))}
                         <div className="mt-8">
+                            <h2 className="text-xl font-semibold">Total</h2>
+                            <p className="text-lg font-semibold">{totalPrice.toFixed(2)}</p>
+                        </div>
+                        <div className="mt-8">
                             <h2 className="text-xl font-semibold">Payment</h2>
                             <p>Enter your payment details here</p>
                         </div>
                         <div className="mt-8">
-                            <h2 className="text-xl font-semibold">Total</h2>
-                            <p className="text-lg font-semibold">${totalPrice.toFixed(2)}</p>
+                            <h2 className="text-xl font-semibold">Current Address</h2>
+                            {
+                                token
+                                    ?
+                                    user?.address ?
+                                        <div className='flex flex-col items-start'>
+                                            <p>{user.address}</p>
+                                            <button className="mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                                            onClick={() => navigate("/dashboard/user/profile")}>Update Address</button>
+                                        </div>
+                                        :
+                                        <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                                        onClick={() => navigate("/dashboard/user/profile")}>Update Address</button>
+                                    :
+                                    <button className="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                                    onClick={() => navigate("/login")}>Please Login</button>
+                            }
                         </div>
                     </div>
                 )}

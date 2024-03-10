@@ -43,7 +43,29 @@ const login = async (req,res) => {
     })
 }
 
+const updateUser = async (req, res) => {
+    const { email, ...rest } = req.body;
+
+    const updatedFields = Object.fromEntries(
+        Object.entries(rest).filter(([_, value]) => value !== '')
+    );
+
+    const user = await User.findOneAndUpdaete({ email }, updatedFields, { new: true, runValidators: true });
+    if (req.body.password) user.markModified('password')
+    await user.save()
+    if (!user) {
+        throw new BadRequestError("No user with given email");
+    }
+
+    res.status(201).json({
+        user,
+        msg: "User updated successfully"
+    });
+};
+
+
 export {
     register,
     login,
+    updateUser
 }
