@@ -13,7 +13,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import CreateProduct from './pages/admin/CreateProduct';
 import CreateCategory from './pages/admin/CreateCategory';
 import Products from './pages/admin/Products';
-import Users from './pages/admin/Users';
+import AdminOrders from './pages/admin/AdminOrders';
 import Profile from './pages/user/Profile';
 import Orders from './pages/user/Orders';
 import UpdateProduct from './pages/admin/UpdateProduct';
@@ -37,7 +37,7 @@ const App = () => {
           <Route path="admin/create-product" element={<CreateProduct />} />
           <Route path="admin/products" element={<Products />} />
           <Route path="admin/product/:slug" element={<UpdateProduct />} />
-          <Route path="admin/users" element={<Users />} />
+          <Route path="admin/orders" element={<AdminOrders />} />
       </Route>
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />

@@ -23,10 +23,10 @@ const AdminMenu = () => {
         Products
       </NavLink>
       <NavLink
-        to="/dashboard/admin/users"
+        to="/dashboard/admin/orders"
         className="block text-gray-700 hover:text-blue-500"
       >
-        Users
+        Orders
       </NavLink>
     </div>
   );

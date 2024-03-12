@@ -5,6 +5,7 @@ import {
     login,
     updateUser, 
     } from "../controllers/authController.js"
+import { getAllOrders, getOrders, updateOrder } from "../controllers/orderController.js"
 
 const router = express.Router()
 
@@ -21,5 +22,8 @@ router.get('/admin-auth', authenticateUser, isAdmin, (req, res) => (
         ok: true
     })
 ))
+router.get('/orders', authenticateUser, getOrders)
+router.get('/all-orders', authenticateUser, isAdmin, getAllOrders)
+router.patch('/order/:id', authenticateUser, isAdmin, updateOrder)
 
 export default router

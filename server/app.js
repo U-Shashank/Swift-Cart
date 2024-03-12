@@ -28,7 +28,6 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/category', categoryRouter)
 app.use('/api/v1/product', productRouter)
 app.use('/api/v1/braintree', braintreeRouter)
-app.use('/api/v1/braintree', braintreeRouter)
 
 app.get("/api/v1", (req,res) => {
     res.send("Home page")
