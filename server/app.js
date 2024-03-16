@@ -3,7 +3,6 @@ import dotenv from 'dotenv'
 import morgan from 'morgan'
 import 'express-async-errors'
 import cors from 'cors'
-import fileUpload from 'express-fileupload'
 
 import connectDB from './config/db.js'
 import errorHandlerMiddleware from './middlewares/error-handler.js'

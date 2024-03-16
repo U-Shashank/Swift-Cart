@@ -4,12 +4,15 @@ import fs from 'fs'
 import Product from "../models/Product.js"
 import braintree from "braintree"
 import Order from "../models/Order.js"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const gateway = new braintree.BraintreeGateway({
     environment: braintree.Environment.Sandbox,
-    merchantId: "cwzsn2g9wnb84s2b",
-    publicKey: "z32pfjsfx27drqxm",
-    privateKey: "cba2333d622d39e2248ebe97faec15f3",
+    merchantId: process.env.MERCHANT_ID,
+    publicKey: process.env.PUBLIC_KEY,
+    privateKey: process.env.PRIVATE_KEY,
 });
 
 const createProduct = async (req, res) => {
