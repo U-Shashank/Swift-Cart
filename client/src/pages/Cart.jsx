@@ -50,7 +50,7 @@ const Cart = () => {
 
     return (
         <Layout>
-            <div className="container mx-auto mt-8">
+            <div className="container mx-auto mt-8 from-[#0F4C75] to-[#F6F5F5]">
                 <h1 className="text-3xl font-semibold mb-4">Your Cart</h1>
                 {cart.length === 0 ? (
                     <p className="text-center">Your cart is empty</p>

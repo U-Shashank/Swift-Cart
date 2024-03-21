@@ -6,7 +6,7 @@ const Layout = ({children}) => {
   return (
     <div className='h-screen w-screen flex flex-col'>
       <Header />
-      <main className='bg-gradient-to-t from-[#d299c2] to-[#fef9d7] flex-grow'>
+      <main className='from-[#0F4C75] to-[#F6F5F5]  flex-grow mt-16'>
       {children}
       </main>
       <Footer />

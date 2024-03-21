@@ -71,50 +71,60 @@ const Home = () => {
   }
 
   const handlePage = () => {
-    setPage((prev) => prev+1)
+    setPage((prev) => prev + 1)
   }
 
   return (
     <Layout>
-      <div className='flex w-full h-full justify-between p-8 gap-4 bg-gradient-to-t from-[#d299c2] to-[#fef9d7]'>
-        <div className='flex flex-col space-y-4'>
+      <div className='flex w-full h-full justify-between p-8 gap-4 bg-gradient-to-t'>
+        <div className='flex flex-col justify-center space-y-4'>
           {categories.map((category) => (
-            <div key={category._id} className='flex items-center'>
+            <div key={category._id} className='flex items-center mb-2'>
               <input
                 id={`category-${category._id}`}
                 type='checkbox'
                 value={category._id}
                 checked={checked.includes(category._id)}
                 onChange={handleChange}
-                className='mr-2'
+                className='form-checkbox h-5 w-5 text-indigo-600 mr-2'
               />
-              <label htmlFor={`category-${category._id}`} className='text-gray-800'>
-                {category.name}
+              <label
+                htmlFor={`category-${category._id}`}
+                className='text-gray-800 capitalize bg-gray-200 px-3 py-1 rounded-md border border-gray-300'
+              >
+                {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
               </label>
             </div>
           ))}
-          <div className='bg-gray-400 rounded-md p-4 flex flex-col gap-5'>
-            <label htmlFor="min">Min</label>
-            <input className='rounded-md'
+
+
+          <div className='bg-gray-400/40 rounded-md p-4 flex flex-col gap-5'>
+            <label htmlFor="min" className="text-gray-800 font-semibold">Min</label>
+            <input
+              className='rounded-md border-gray-300 border px-3 py-2'
               id='min'
               name='min'
               type="number"
               min={1}
               max={10000}
               value={minPrice}
-              onChange={handleChange} />
-            <label htmlFor="min">Max</label>
-            <input className='rounded-md'
+              onChange={handleChange}
+            />
+            <label htmlFor="max" className="text-gray-800 font-semibold">Max</label>
+            <input
+              className='rounded-md border-gray-300 border px-3 py-2'
               id='max'
               name='max'
               type="number"
               min={1}
               max={10000}
               value={maxPrice}
-              onChange={handleChange} />
+              onChange={handleChange}
+            />
           </div>
+
         </div>
-        <div className='w-full flex flex-col items-center'>
+        <div className='w-full flex flex-col items-center relative'>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full justify-items-center gap-5'>
             {
               products.map((product) => (
@@ -130,25 +140,27 @@ const Home = () => {
                     </div>
                     <div className="px-6 py-4">
                       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        setCart((prev) => ([
-                          ...prev,
-                          product
-                        ]))
-                        localStorage.setItem('cart', JSON.stringify([... cart, product]))
-                      }}>
+                        onClick={(e) => {
+                          e.preventDefault()
+                          setCart((prev) => ([
+                            ...prev,
+                            product
+                          ]))
+                          localStorage.setItem('cart', JSON.stringify([...cart, product]))
+                        }}>
                         Add to Cart
                       </button>
                     </div>
                   </div>
                 </Link>
               ))
-              
+
             }
           </div>
-          <button className='bg-gray-500 rounded-lg text-xl px-2 py-1 mt-2 w-[150px] text-gray-100 hover:bg-gray-200 hover:text-gray-500'
-          onClick={handlePage}>
+          <button
+            className='bg-yellow-300 hover:bg-yellow-400 text-indigo-400 font-bold rounded-lg text-xl px-4 py-2 mt-4 w-[150px] focus:outline-blue-800 focus:ring-2'
+            onClick={handlePage}
+          >
             Load More
           </button>
         </div>
@@ -158,4 +170,3 @@ const Home = () => {
 };
 
 export default Home;
-``
