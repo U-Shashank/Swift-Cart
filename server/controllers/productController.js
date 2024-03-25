@@ -116,7 +116,7 @@ const getAllProduct = async (req, res) => {
         sort({ createdAt: -1 })
 
     if (page > 0) {
-        result = result.limit(Number(page) * 1)
+        result = result.limit(Number(page) * 5)
     }
 
     const product = await result

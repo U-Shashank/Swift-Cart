@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../../context/auth'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Navigate, Outlet, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Spinner from '../Spinner'
 
 const Admin = () => {
   const [ok, setOk] = useState(false)
@@ -16,7 +17,6 @@ const Admin = () => {
           setOk(true)
         } else {
           setOk(false)
-          navigate("/login")
         }
       } catch (error) {
         console.log(error);
@@ -27,7 +27,7 @@ const Admin = () => {
   }, [auth.token, navigate])
 
   return (
-    ok ? <Outlet /> : null
+    ok ? <Outlet /> : <Spinner />
   )
 
 }

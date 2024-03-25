@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout/Layout';
 import { useCart } from '../../context/cart';
 import { useAuth } from '../../context/auth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DropIn from 'braintree-web-drop-in-react';
 import axios from 'axios';
 
@@ -11,6 +11,7 @@ const Cart = () => {
     const [auth] = useAuth();
     const { user, token } = auth;
     const navigate = useNavigate();
+    const location = useLocation()
     const [clientToken, setClientToken] = useState();
     const [instance, setInstance] = useState();
     const [loading, setLoading] = useState(false);
@@ -97,7 +98,9 @@ const Cart = () => {
                                             onClick={() => navigate("/dashboard/user/profile")}>Update Address</button>
                                     :
                                     <button className="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-                                        onClick={() => navigate("/login")}>Please Login</button>
+                                        onClick={() => navigate("/login", {
+                                            state: location.pathname
+                                        })}>Please Login</button>
                             }
                         </div>
                         <div className="mt-8">

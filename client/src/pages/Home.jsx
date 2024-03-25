@@ -77,7 +77,7 @@ const Home = () => {
   return (
     <Layout>
       <div className='flex w-full h-full justify-between p-8 gap-4 bg-gradient-to-t'>
-        <div className='flex flex-col justify-center space-y-4'>
+        <div className='flex flex-col space-y-4'>
           {categories.map((category) => (
             <div key={category._id} className='flex items-center mb-2'>
               <input

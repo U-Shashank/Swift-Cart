@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import axios from 'axios'
 import { useAuth } from '../../context/auth'
+import { useLocation, useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const Login = () => {
     const [auth, setAuth] = useAuth()
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const [data, setData] = useState({
         email: "",
@@ -31,8 +35,13 @@ const Login = () => {
                 token: response.data.token
             }))
             console.log(response)
+            console.log(location.state);
+            navigate(location.state || "/");
+            toast.success('Successfully logged in!')
+
         } catch (error) {
             console.log(error)
+            toast.error(error.response.data.msg)
         }
     }
 

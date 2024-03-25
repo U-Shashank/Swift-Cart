@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const Register = () => {
 
@@ -25,8 +26,10 @@ const Register = () => {
         try {
             const response = await axios.post(`${import.meta.env.VITE_HOST_URL}/auth/register`, data)
             console.log(response)
+            toast.success('Registered successfully')
         } catch (error) {
             console.log(error)
+            toast.error(error.response.data.msg)
         }
     }
 
