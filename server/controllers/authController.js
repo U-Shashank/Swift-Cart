@@ -50,7 +50,7 @@ const updateUser = async (req, res) => {
         Object.entries(rest).filter(([_, value]) => value !== '')
     );
 
-    const user = await User.findOneAndUpdaete({ email }, updatedFields, { new: true, runValidators: true });
+    const user = await User.findOneAndUpdate({ email }, updatedFields, { new: true, runValidators: true });
     if (req.body.password) user.markModified('password')
     await user.save()
     if (!user) {
