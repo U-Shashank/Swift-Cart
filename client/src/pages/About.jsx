@@ -5,7 +5,7 @@ import Layout from '../components/Layout/Layout'
 const About = () => {
   return (
     <Layout>
-      <div className="bg-gray-100 h-full p-8 flex flex-col justify-center">
+      <div className="h-full p-8 flex flex-col justify-center">
         <div className="max-w-2xl mx-auto bg-white p-8 rounded shadow-md">
           <h1 className="text-3xl font-bold mb-4 text-center">About Us</h1>
           <p className="text-gray-700 mb-4">

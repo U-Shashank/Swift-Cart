@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { LiaRupeeSignSolid } from 'react-icons/lia';
 import { useSearch } from '../../context/search';
 import { useCart } from '../../context/cart';
+import {toast} from 'react-hot-toast'
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -147,6 +148,7 @@ const Home = () => {
                             product
                           ]))
                           localStorage.setItem('cart', JSON.stringify([...cart, product]))
+                          toast.success("added to cart")
                         }}>
                         Add to Cart
                       </button>
