@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const ProductForm = ({ handleSubmit, productData, deleteProduct }) => {
   const [categories, setCategories] = useState([])
@@ -46,12 +46,11 @@ const ProductForm = ({ handleSubmit, productData, deleteProduct }) => {
     }))
   }
 
-
   return (
-    <div className='max-w-md mx-auto p-4 bg-white rounded-md shadow-md'>
-      <div className='mb-4'>
+    <div className='max-w-[300px] h-fit mx-auto p-6 bg-white rounded-lg shadow-2xl self-center'>
+      <div className='mb-4 text-black'>
         <select
-          className='w-full p-2 border rounded-md'
+          className='w-full px-3 py-2 placeholder-gray-500 border rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
           name='category'
           value={formData.category}
           onChange={handleChange}
@@ -67,18 +66,18 @@ const ProductForm = ({ handleSubmit, productData, deleteProduct }) => {
         </select>
       </div>
       <div className='mb-4'>
-        <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='photo'>
+        <label className='block text-sm font-medium text-gray-700' htmlFor='photo'>
           Upload Photo
         </label>
         <input
-          className='w-full p-2 border rounded-md'
+          className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
           type='file'
           name='photo'
           accept='image/*'
           onChange={handleChange}
         />
       </div>
-      {formData.photo 
+      {formData.photo
         ?
         <div className='mb-4'>
           <img
@@ -102,7 +101,7 @@ const ProductForm = ({ handleSubmit, productData, deleteProduct }) => {
       }
       <div className='mb-4'>
         <input
-          className='w-full p-2 border rounded-md'
+          className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
           type='text'
           name='name'
           value={formData.name}
@@ -112,7 +111,7 @@ const ProductForm = ({ handleSubmit, productData, deleteProduct }) => {
       </div>
       <div className='mb-4'>
         <input
-          className='w-full p-2 border rounded-md'
+          className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
           type='number'
           name='price'
           value={formData.price}
@@ -122,7 +121,7 @@ const ProductForm = ({ handleSubmit, productData, deleteProduct }) => {
       </div>
       <div className='mb-4'>
         <textarea
-          className='w-full p-2 border rounded-md'
+          className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
           name='description'
           value={formData.description}
           onChange={handleChange}
@@ -131,7 +130,7 @@ const ProductForm = ({ handleSubmit, productData, deleteProduct }) => {
       </div>
       <div className='mb-4'>
         <input
-          className='w-full p-2 border rounded-md'
+          className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
           type='number'
           name='quantity'
           value={formData.quantity}
@@ -141,7 +140,7 @@ const ProductForm = ({ handleSubmit, productData, deleteProduct }) => {
       </div>
       <div className='mb-4'>
         <select
-          className='w-full p-2 border rounded-md'
+          className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
           name='shipping'
           value={formData.shipping}
           onChange={handleChange}
@@ -176,7 +175,7 @@ const ProductForm = ({ handleSubmit, productData, deleteProduct }) => {
           })
         }}
         type='submit'
-        className='bg-blue-500 w-full text-lg py-1 rounded-lg hover:bg-blue-400'>
+        className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
         {productData?._id ? "UPDATE" : "CREATE"}
       </button>
       {
@@ -188,7 +187,7 @@ const ProductForm = ({ handleSubmit, productData, deleteProduct }) => {
           deleteProduct()
         }}
         type='submit'
-        className='bg-red-500 w-full text-lg py-1 rounded-lg hover:bg-red-400 mt-1'>
+        className='mt-2 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'>
         DELETE
       </button>
       :

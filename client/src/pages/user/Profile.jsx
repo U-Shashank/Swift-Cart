@@ -46,7 +46,7 @@ const handleSubmit = e => {
     <Layout>
     <div className='flex h-full'>
       <UserMenu />
-      <div className='h-full w-full flex'>
+      <div className='h-full w-full flex ml-[20%]'>
             <form onSubmit={handleSubmit} className='register'>
                 <input
                     type="text"

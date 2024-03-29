@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-const CategoryForm = ({name, handleSubmit }) => {
+const CategoryForm = ({name, handleSubmit}) => {
   const [value, setValue] = useState(name ? name : "")
   return (
-    <form className="min-w-[300px] sm:w-1/2 mx-auto p-4 bg-white shadow-md rounded-md">
+    <form className="min-w-[300px] sm:w-1/2 mx-auto p-4 bg-white text-black shadow-md rounded-md">
       <div className="mb-4">
         <input
           id="categoryInput"
