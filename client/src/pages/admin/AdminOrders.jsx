@@ -14,7 +14,6 @@ const AdminOrders = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.get(`${import.meta.env.VITE_HOST_URL}/auth/all-orders`);
-      console.log(data);
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -46,6 +45,7 @@ const AdminOrders = () => {
         <div className="min-w-2xl w-screen p-5 text-[#3282B8] overflow-auto">
           <h1 className="text-center text-xl font-bold mb-4 text-[#0F4C75]">All AdminOrders</h1>
           {orders?.map((o, i) => {
+            // console.log(o);
             return (
               <div className="border border-gray-300 shadow rounded-md mb-4 bg-white overflow-x-auto">
                 <table className="table-auto w-full">

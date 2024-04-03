@@ -5,14 +5,15 @@ import { Link } from 'react-router-dom';
 import { LiaRupeeSignSolid } from 'react-icons/lia';
 import { useSearch } from '../../context/search';
 import { useCart } from '../../context/cart';
-import {toast} from 'react-hot-toast'
+import { toast } from 'react-hot-toast'
+import Slider from 'react-slider'
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [checked, setChecked] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(10000);
   const [page, setPage] = useState(1);
   const [search] = useSearch()
 
@@ -34,7 +35,6 @@ const Home = () => {
   const getAllCategory = async () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_HOST_URL}/category`);
-      console.log(res.data);
       if (res.data.category) setCategories(res.data.category);
     } catch (error) {
       console.log(error);
@@ -66,8 +66,23 @@ const Home = () => {
       }
     }
     else {
-      if (e.target.name === 'min') setMinPrice(e.target.value)
-      else setMaxPrice(e.target.value)
+      if (e.target.name === 'min') {
+        setMinPrice(Math.min(parseInt(e.target.value), maxPrice));
+      }
+      else {
+        setMaxPrice(Math.max(parseInt(e.target.value), minPrice));
+
+      }
+    }
+  }
+
+  const handleRange = (value, index) => {
+    if (index === 0) {
+      setMinPrice(Math.min(parseInt(value[0]), maxPrice));
+    }
+    else {
+      setMaxPrice(Math.max(parseInt(value[1]), minPrice));
+
     }
   }
 
@@ -99,33 +114,30 @@ const Home = () => {
           ))}
 
 
-          <div className='bg-gray-400/40 rounded-md p-4 flex flex-col gap-5'>
-            <label htmlFor="min" className="text-gray-800 font-semibold">Min</label>
-            <input
-              className='rounded-md border-gray-300 border px-3 py-2'
-              id='min'
-              name='min'
-              type="number"
-              min={1}
+          <div className='bg-gray-400/10 rounded-md p-4 flex flex-col gap-5'>
+              <div className='text-xs font-mono font-bold'>₹{minPrice} - ₹{maxPrice}</div>
+            <Slider className='w-full h-1 bg-yellow-200 rounded-sm'
+              thumbClassName='h-3 w-3 bg-blue-600 cursor-pointer rounded-full -top-[3px] focus:'
+              trackClassName='track'
+              onChange={handleRange}
+              value={[minPrice, maxPrice]}
+              min={0}
               max={10000}
-              value={minPrice}
-              onChange={handleChange}
             />
-            <label htmlFor="max" className="text-gray-800 font-semibold">Max</label>
-            <input
-              className='rounded-md border-gray-300 border px-3 py-2'
-              id='max'
-              name='max'
-              type="number"
-              min={1}
-              max={10000}
-              value={maxPrice}
-              onChange={handleChange}
-            />
+
           </div>
+
 
         </div>
         <div className='w-full flex flex-col items-center relative'>
+          {
+            products.length === 0 && (
+              <div className="flex flex-col items-center justify-center space-y-2">
+                <p className="text-xl font-semibold text-gray-600">No products found</p>
+                <p className="text-gray-500">We couldn't find any products matching your search.</p>
+              </div>
+            )
+          }
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full justify-items-center gap-5'>
             {
               products.map((product) => (
@@ -159,12 +171,14 @@ const Home = () => {
 
             }
           </div>
-          <button
+          {products.length ? <button
             className='bg-yellow-300 hover:bg-yellow-400 text-indigo-400 font-bold rounded-lg text-xl px-4 py-2 mt-4 w-[150px] focus:outline-blue-800 focus:ring-2'
             onClick={handlePage}
           >
             Load More
           </button>
+          :
+          null}
         </div>
       </div>
     </Layout>

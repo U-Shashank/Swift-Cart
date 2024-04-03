@@ -70,48 +70,49 @@ const Header = () => {
               onKeyDown={handleSearch}
             />
           </li>
-          <li>
-            <NavLink
-              to="/"
-              className="py-2 blockd transition duration-300 relative group"
-            >
+          <NavLink
+            to="/"
+            className="py-2 blockd transition duration-300 relative group"
+          >
+            <li>
               Home
               <span className="absolute bottom-0 left-0 w-full h-[2px] bg-red-400 transform scale-x-0 group-hover:scale-x-100 transition-all duration-300"></span>
-            </NavLink>
-          </li>
+            </li>
+          </NavLink>
 
           {!auth.user ? (
             <>
-              <li>
-                <NavLink
-                  to="/register"
-                  className="py-2 blockd transition duration-300 relative group"
-                >
+              <NavLink
+                to="/register"
+                className="py-2 blockd transition duration-300 relative group"
+              >
+                <li>
                   Sign Up
                   <span className="absolute bottom-0 left-0 w-full h-[2px] bg-red-400 transform scale-x-0 group-hover:scale-x-100 transition-all duration-300"></span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/login"
-                  className="py-2 blockd transition duration-300 relative group"
-                >
+                </li>
+              </NavLink>
+              <NavLink
+                to="/login"
+                className="py-2 blockd transition duration-300 relative group"
+              >
+                <li>
                   Login
                   <span className="absolute bottom-0 left-0 w-full h-[2px] bg-red-400 transform scale-x-0 group-hover:scale-x-100 transition-all duration-300"></span>
-                </NavLink>
-              </li>
+                </li>
+              </NavLink>
 
             </>
           ) : (
             <div className='flex items-center relative'>
               <button onClick={handleDropdown} className="w-full py-2d transition duration-300 group">
-              {auth.user.name.charAt(0).toUpperCase() + auth.user.name.slice(1)}                <span className="absolute bottom-[-0.9vh] left-0 w-full h-[2px] bg-red-400 transform scale-x-0 group-hover:scale-x-100 transition-all duration-300"></span>
+                {auth.user.name.charAt(0).toUpperCase() + auth.user.name.slice(1)}
+                <span className="absolute bottom-[-0.9vh] left-0 w-full h-[2px] bg-red-400 transform scale-x-0 group-hover:scale-x-100 transition-all duration-300"></span>
               </button>
-              <ul className={`${!dropdown ? "hidden" : "absolute bg-white rounded-md shadow-md mt-2 top-8 left-0 right-0 sm:right-auto"} transition duration-500 z-10`}>
+              <ul className={`${!dropdown ? "hidden" : "absolute bg-white rounded-md shadow-md mt-2 top-6 left-0 right-0 sm:right-auto"} transition duration-500 z-10`}>
                 <li>
                   <NavLink
                     to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
-                    className="text-gray-800d py-2 px-4 block relative"
+                    className="text-gray-800d py-2 px-4 block relative hover:bg-gray-100"
                   >
                     Dashboard
                     <span className="absolute bottom-0 left-0 w-full h-0.5 bg-transparent transition-all duration-300"></span>
@@ -120,7 +121,7 @@ const Header = () => {
                 <li>
                   <NavLink
                     to="/login"
-                    className="text-gray-800d py-2 px-4 block relative"
+                    className="text-gray-800d py-2 px-4 block relative hover:bg-gray-100"
                     onClick={handleLogout}
                   >
                     Logout
@@ -130,15 +131,15 @@ const Header = () => {
               </ul>
             </div>
           )}
-          <li>
-            <NavLink
-              to="/cart"
-              className="py-2 blockd transition duration-400 relative group"
-            >
+          <NavLink
+            to="/cart"
+            className="py-2 blockd transition duration-400 relative group"
+          >
+            <li>
               Cart({cart.length})
               <span className="absolute bottom-0 left-0 w-full h-[2px] bg-red-400 transform scale-x-0 group-hover:scale-x-100 transition-all duration-300"></span>
-            </NavLink>
-          </li>
+            </li>
+          </NavLink>
 
         </ul>
       </div>
