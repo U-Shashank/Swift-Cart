@@ -35,7 +35,7 @@ app.get("/api/v1", (req,res) => {
 app.use(errorHandlerMiddleware)
 app.use(notFound)
 
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 
 const start = async () => {
     await connectDB()
