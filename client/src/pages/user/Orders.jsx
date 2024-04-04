@@ -30,7 +30,7 @@ const Orders = () => {
         <h1 className="text-center text-xl font-bold mb-4 text-[#0F4C75]">All Orders</h1>
         {orders?.map((o, i) => {
           return (
-            <div className="border border-gray-300 shadow rounded-md mb-4 bg-white overflow-x-auto">
+            <div key={o._id} className="border border-gray-300 shadow rounded-md mb-4 bg-white overflow-x-auto">
               <table className="table-auto w-full">
                 <thead>
                   <tr className="bg-gray-200">

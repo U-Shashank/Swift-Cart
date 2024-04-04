@@ -47,7 +47,7 @@ const AdminOrders = () => {
           {orders?.map((o, i) => {
             // console.log(o);
             return (
-              <div className="border border-gray-300 shadow rounded-md mb-4 bg-white overflow-x-auto">
+              <div key={o._id} className="border border-gray-300 shadow rounded-md mb-4 bg-white overflow-x-auto">
                 <table className="table-auto w-full">
                   <thead>
                     <tr className="bg-gray-200">

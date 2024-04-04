@@ -16,7 +16,6 @@ const Private = () => {
       try {
         setLoading(true)
         const { data } = await axios.get(`${import.meta.env.VITE_HOST_URL}/auth/user-auth`)
-        console.log(data.ok)
         if (data?.ok) {
           setOk(true)
         } else {
@@ -30,13 +29,6 @@ const Private = () => {
     }
     if (auth?.token) authCheck()
   }, [auth?.token])
-
-  useEffect(() => {
-    console.log(ok);
-  }, [ok])
-
-
-  console.log(ok);
 
   if (loading) return <h1>loading</h1>
   return (
