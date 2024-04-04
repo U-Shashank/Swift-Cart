@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@babel/runtime": "^7.24.4",
     "axios": "^1.6.5",
     "braintree-web-drop-in-react": "^1.2.1",
     "moment": "^2.30.1",
