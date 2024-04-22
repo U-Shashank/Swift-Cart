@@ -76,7 +76,7 @@ const AdminOrders = () => {
                         </select>
                       </td>
                       <td className="px-4 py-2 text-center">{o?.buyer?.name}</td>
-                      <td className="px-4 py-2 text-center">{moment(o?.createAt).fromNow()}</td>
+                      <td className="px-4 py-2 text-center">{moment(o?.createdAt).fromNow()}</td>
                       <td className="px-4 py-2 text-center">{o?.payment.success ? "Success" : "Failed"}</td>
                       <td className="px-4 py-2 text-center">{o?.products?.length}</td>
                     </tr>

@@ -45,7 +45,7 @@ const Orders = () => {
                   <tr>
                     <td className="px-4 py-2 text-center">{i + 1}</td>
                     <td className="px-4 py-2 text-center">{o?.status}</td>
-                    <td className="px-4 py-2 text-center">{moment(o?.createAt).fromNow()}</td>
+                    <td className="px-4 py-2 text-center">{moment(o?.createdAt).fromNow()}</td>
                     <td className="px-4 py-2 text-center">{o?.payment.success ? "Success" : "Failed"}</td>
                     <td className="px-4 py-2 text-center">{o?.products?.length}</td>
                   </tr>
