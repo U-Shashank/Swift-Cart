@@ -47,7 +47,7 @@ const ProductForm = ({ handleSubmit, productData, deleteProduct }) => {
   }
 
   return (
-    <div className='max-w-[300px] h-fit mx-auto p-6 bg-white rounded-lg shadow-2xl self-center'>
+    <div className='max-w-[300px] h-fit mx-auto p-6 text-black bg-white rounded-lg shadow-2xl self-center'>
       <div className='mb-4 text-black'>
         <select
           className='w-full px-3 py-2 placeholder-gray-500 border rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'

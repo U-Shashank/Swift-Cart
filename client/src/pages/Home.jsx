@@ -143,9 +143,9 @@ const Home = () => {
               products.map((product) => (
                 <Link to={`/product/${product.slug}`} key={product._id}>
                   <div className="max-w-[250px] rounded overflow-hidden shadow-lg bg-white">
-                    <img className="w-full h-48 object-cover" src={`${import.meta.env.VITE_HOST_URL}/product/photo/${product._id}`} alt="Product Image" />
+                    <img className="w-full h-48 object-cover" src={`${import.meta.env.VITE_HOST_URL}/product/photo/${product._id}`} alt={product.name} />
                     <div className="px-6">
-                      <div className="font-bold text-xl mb-2">{product.name}</div>
+                      <div className="font-bold text-xl mb-2 truncate">{product.name}</div>
                     </div>
                     <div className="flex items-center px-6">
                       <span className="text-gray-700">Price:</span>

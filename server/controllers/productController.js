@@ -163,7 +163,7 @@ const getSimilarProducts = async (req, res) => {
     const product = await Product.find({
         category: cid,
         _id: { $ne: pid }
-    }).populate(category).select("-photo")
+    }).populate("category").select("-photo")
     res.status(200).json({
         product,
         success: true

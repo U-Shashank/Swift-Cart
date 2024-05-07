@@ -21,9 +21,9 @@
     "express-fileupload": "^1.4.3",
     "express-formidable": "^1.2.0",
     "express-formidable-v2": "^2.2.1",
+    "express-rate-limit": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
-    "morgan": "^1.10.0",
     "slugify": "^1.6.6"
   },
   "devDependencies": {

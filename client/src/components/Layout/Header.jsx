@@ -9,7 +9,7 @@ import { FaBars } from "react-icons/fa";
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [dropdown, setDropdown] = useState(false);
-  const [setSearch] = useSearch();
+  const [search, setSearch] = useSearch();
   const [showMenu, setShowMenu] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [cart] = useCart();
