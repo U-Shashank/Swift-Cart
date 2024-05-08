@@ -61,3 +61,7 @@ To run locally on your machine, follow these steps:
 - React
 - Tailwind
 - JWT
+
+## Demo
+https://github.com/U-Shashank/Swift-Cart/assets/121192796/197cf2ea-40d9-4cca-b315-09eb7357f01d
+
