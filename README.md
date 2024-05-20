@@ -2,7 +2,7 @@
 Full stack e-commerce website developed using mern stack
 
 ## Hosting
-I have hosted this project on vercel [click to visit](https://swift-cart-seven.vercel.app/).
+Project has been hosted on vercel [click to visit](https://swift-cart-seven.vercel.app/).
 ### Admin credentials: 
 - username: admin@mail.com
 - password: password
