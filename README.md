@@ -20,7 +20,7 @@ To run locally on your machine, follow these steps:
 
 2. **Navigate to Project Directory**
    ```bash
-   cd react-weather-app
+   cd Swift-Cart
    ```
 
 3. **Install Dependencies**
