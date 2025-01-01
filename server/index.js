@@ -20,11 +20,16 @@ dotenv.config()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(cors())
+app.use(cors({
+    origin: ['https://swift-cart-seven.vercel.app', 'http://localhost:5173'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}))
+
 app.use(rateLimit({
-    windowMs: 1 * 60 * 60 * 1000,
-    max: 100,
-    message: 'You have exceeded the 100 requests in 24 hrs limit!',
+    windowMs: 1 * 60 * 60 * 1000, // 1 hour
+    max: 1000, // limit each IP to 1000 requests per windowMs
+    message: 'You have exceeded the 1000 requests in 1 hour limit!',
     standardHeaders: true,
     legacyHeaders: false,
 }))

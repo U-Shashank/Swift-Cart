@@ -1,29 +1,32 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-const CategoryForm = ({name, handleSubmit}) => {
-  const [value, setValue] = useState(name ? name : "")
+const CategoryForm = ({ handleSubmit, name = '', buttonText = 'Submit' }) => {
+  const [value, setValue] = useState(name);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    handleSubmit(value);
+    setValue('');
+  };
+
   return (
-    <form className="min-w-[300px] sm:w-1/2 mx-auto p-4 bg-white text-black shadow-md rounded-md">
-      <div className="mb-4">
+    <form onSubmit={onSubmit} className="w-full max-w-md space-y-4">
+      <div className="flex gap-4">
         <input
-          id="categoryInput"
           type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded-md"
-          placeholder='Enter new category'
+          placeholder="Enter category name"
+          className="flex-1 px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          required
         />
+        <button 
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-2 sm:px-6 rounded transition duration-200"
+        >
+          {buttonText}
+        </button>
       </div>
-      <button
-        type="button"
-        onClick={() => {
-            setValue("")
-            handleSubmit(value)
-        }}
-        className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
-      >
-        Submit
-      </button>
     </form>
   );
 };

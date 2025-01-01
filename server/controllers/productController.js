@@ -183,7 +183,9 @@ const braintreeToken = async (req, res) => {
 
 const braintreePayment = async (req, res) => {
     const { cart, nonce } = req.body
-    const totalPrice = cart.reduce((total, product) => total + product.price, 0);
+    // const totalPrice = cart.reduce((total, product) => total + product.price, 0);
+    const totalPrice = cart.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0);
+
     const response = await gateway.transaction.sale({
         amount: totalPrice,
         paymentMethodNonce: nonce,
@@ -192,11 +194,19 @@ const braintreePayment = async (req, res) => {
         }
     })
 
-    const order = new Order({
-        products: cart,
-        payment: response,
-        buyer: req.user._id
-    }).save()
+    
+        // Format the products array for order creation
+        const orderProducts = cart.map(item => ({
+            product: item._id,
+            quantity: item.quantity || 1
+        }));
+
+        // Create new order
+        const order = await new Order({
+            products: orderProducts,
+            payment: response,
+            buyer: req.user._id
+        }).save();
 
     res.json({
         success: true
