@@ -18,7 +18,6 @@ const Orders = () => {
     try {
       const { data } = await axios.get(`${import.meta.env.VITE_HOST_URL}/auth/orders`);
       setOrders(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
       toast.error("Failed to load orders");

@@ -18,6 +18,7 @@ const AdminOrders = () => {
     try {
       const { data } = await axios.get(`${import.meta.env.VITE_HOST_URL}/auth/all-orders`);
       setOrders(data);
+      
     } catch (error) {
       console.log(error);
       toast.error("Failed to load orders");

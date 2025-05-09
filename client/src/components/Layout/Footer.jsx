@@ -81,9 +81,9 @@ const Footer = () => {
           <div className="flex flex-col items-center">
             <h3 className="text-xl font-semibold mb-4">Connect With Us</h3>
             <div className="flex space-x-4">
-              {socialLinks.map(({ icon: Icon, href, color }) => (
+              {socialLinks.map(({ icon: Icon, href, color }, idx) => (
                 <motion.a
-                  key={href}
+                  key={idx}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
