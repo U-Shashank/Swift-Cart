@@ -3,6 +3,10 @@ Full stack e-commerce website developed using mern stack
 
 ## Hosting
 Project has been hosted on vercel [click to visit](https://swift-cart-seven.vercel.app/).
+
+## Demo
+[https://youtu.be/7IiuzXLiiY8](https://youtu.be/7IiuzXLiiY8)
+
 ### Admin credentials: 
 - username: admin@mail.com
 - password: password
@@ -62,6 +66,4 @@ To run locally on your machine, follow these steps:
 - Tailwind
 - JWT
 
-## Demo
-https://github.com/U-Shashank/Swift-Cart/assets/121192796/197cf2ea-40d9-4cca-b315-09eb7357f01d
 
